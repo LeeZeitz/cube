@@ -13,6 +13,10 @@ public class Tester {
 	    testUpI(solver);
 	    testRight(solver);
 	    testRightI(solver);
+	    testBack(solver);
+	    testBackI(solver);
+	    testDown(solver);
+	    testDownI(solver);
 
 	}
 
@@ -203,5 +207,171 @@ public class Tester {
 			System.out.println("testRightI Passed");
 		}
 	}
+
+
+	public static void testBack(CubeSolver solver){
+
+		String[][] right = {{"R", "W", "W"}, {"R", "R", "G"}, {"Y", "Y", "O"}};
+	    String[][] left = {{"B", "W", "W"}, {"O", "O", "B"}, {"O", "Y", "Y"}};
+	    String[][] up = {{"W", "O", "R"}, {"G", "Y", "R"}, {"G", "R", "G"}};
+	    String[][] down = {{"B", "W", "O"}, {"B", "W", "O"}, {"Y", "R", "W"}};
+	    String[][] front = {{"O", "B", "Y"}, {"O", "B", "Y"}, {"R", "B", "G"}};
+	    String[][] back = {{"B", "G", "B"}, {"W", "G", "Y"}, {"R", "G", "G"}};
+
+		String[][] rightS = {{"R", "W", "W"}, {"R", "R", "R"}, {"Y", "Y", "Y"}};
+	    String[][] leftS = {{"R", "W", "W"}, {"O", "O", "B"}, {"W", "Y", "Y"}};
+	    String[][] upS = {{"W", "G", "O"}, {"G", "Y", "R"}, {"G", "R", "G"}};
+	    String[][] downS = {{"B", "W", "O"}, {"B", "W", "O"}, {"B", "O", "O"}};
+	    String[][] frontS = {{"O", "B", "Y"}, {"O", "B", "Y"}, {"R", "B", "G"}};
+	    String[][] backS = {{"R", "W", "B"}, {"G", "G", "G"}, {"G", "Y", "B"}};
+
+
+	    String[][][] cube = {front, right, left, up, down, back};
+	    String[][][] goal = {frontS, rightS, leftS, upS, downS, backS};
+
+		String[][][] tested = solver.back(cube);
+
+		if (!Arrays.deepEquals(tested, goal)) {
+			System.out.println("testBack failed: ");
+			for (int i = 0; i < 6; i++) {
+				solver.print(tested[i]);
+			}
+			System.out.println();
+			for (int i = 0; i < 6; i++) {
+				solver.print(goal[i]);
+			}
+		}
+		else {
+			System.out.println("testBack Passed");
+		}
+	}
+
+
+
+	public static void testBackI(CubeSolver solver){
+
+		String[][] right = {{"R", "W", "W"}, {"R", "R", "G"}, {"Y", "Y", "O"}};
+	    String[][] left = {{"B", "W", "W"}, {"O", "O", "B"}, {"O", "Y", "Y"}};
+	    String[][] up = {{"W", "O", "R"}, {"G", "Y", "R"}, {"G", "R", "G"}};
+	    String[][] down = {{"B", "W", "O"}, {"B", "W", "O"}, {"Y", "R", "W"}};
+	    String[][] front = {{"O", "B", "Y"}, {"O", "B", "Y"}, {"R", "B", "G"}};
+	    String[][] back = {{"B", "G", "B"}, {"W", "G", "Y"}, {"R", "G", "G"}};
+
+		String[][] rightS = {{"R", "W", "W"}, {"R", "R", "R"}, {"Y", "Y", "Y"}};
+	    String[][] leftS = {{"R", "W", "W"}, {"O", "O", "B"}, {"W", "Y", "Y"}};
+	    String[][] upS = {{"W", "G", "O"}, {"G", "Y", "R"}, {"G", "R", "G"}};
+	    String[][] downS = {{"B", "W", "O"}, {"B", "W", "O"}, {"B", "O", "O"}};
+	    String[][] frontS = {{"O", "B", "Y"}, {"O", "B", "Y"}, {"R", "B", "G"}};
+	    String[][] backS = {{"R", "W", "B"}, {"G", "G", "G"}, {"G", "Y", "B"}};
+
+
+	    String[][][] cube = {front, right, left, up, down, back};
+	    String[][][] goal = {frontS, rightS, leftS, upS, downS, backS};
+
+		String[][][] tested = solver.backI(solver.backI(solver.backI(cube)));
+
+		if (!Arrays.deepEquals(tested, goal)) {
+			System.out.println("testBackI failed: ");
+			for (int i = 0; i < 6; i++) {
+				solver.print(tested[i]);
+			}
+			System.out.println();
+			for (int i = 0; i < 6; i++) {
+				solver.print(goal[i]);
+			}
+		}
+		else {
+			System.out.println("testBackI Passed");
+		}
+	}
+
+
+	public static void testDown(CubeSolver solver){
+
+		String[][] right = {{"G", "R", "B"}, {"G", "R", "W"}, {"W", "B", "Y"}};
+	    String[][] left = {{"G", "O", "O"}, {"Y", "O", "O"}, {"Y", "Y", "Y"}};
+	    String[][] up = {{"R", "R", "R"}, {"B", "Y", "G"}, {"B", "Y", "O"}};
+	    String[][] down = {{"B", "G", "G"}, {"B", "W", "W"}, {"B", "B", "R"}};
+	    String[][] front = {{"W", "R", "Y"}, {"W", "B", "Y"}, {"R", "O", "O"}};
+	    String[][] back = {{"O", "R", "G"}, {"O", "G", "G"}, {"W", "W", "W"}};
+
+
+		String[][] rightS = {{"G", "R", "B"}, {"G", "R", "W"}, {"R", "O", "O"}};
+	    String[][] leftS = {{"G", "O", "O"}, {"Y", "O", "O"}, {"G", "R", "O"}};
+	    String[][] upS = {{"R", "R", "R"}, {"B", "Y", "G"}, {"B", "Y", "O"}};
+	    String[][] downS = {{"B", "B", "B"}, {"B", "W", "G"}, {"R", "W", "G"}};
+	    String[][] frontS = {{"W", "R", "Y"}, {"W", "B", "Y"}, {"Y", "Y", "Y"}};
+	    String[][] backS = {{"Y", "B", "W"}, {"O", "G", "G"}, {"W", "W", "W"}};
+
+
+	    String[][][] cube = {front, right, left, up, down, back};
+	    String[][][] goal = {frontS, rightS, leftS, upS, downS, backS};
+
+		String[][][] tested = solver.down(cube);
+
+		if (!Arrays.deepEquals(tested, goal)) {
+			System.out.println("testDown failed: ");
+			for (int i = 0; i < 6; i++) {
+				solver.print(tested[i]);
+			}
+			System.out.println();
+			for (int i = 0; i < 6; i++) {
+				solver.print(goal[i]);
+			}
+		}
+		else {
+			System.out.println("testDown Passed");
+		}
+	}
+
+
+
+
+	public static void testDownI(CubeSolver solver){
+
+		String[][] rightS = {{"G", "R", "B"}, {"G", "R", "W"}, {"W", "B", "Y"}};
+	    String[][] leftS = {{"G", "O", "O"}, {"Y", "O", "O"}, {"Y", "Y", "Y"}};
+	    String[][] upS = {{"R", "R", "R"}, {"B", "Y", "G"}, {"B", "Y", "O"}};
+	    String[][] downS = {{"B", "G", "G"}, {"B", "W", "W"}, {"B", "B", "R"}};
+	    String[][] frontS = {{"W", "R", "Y"}, {"W", "B", "Y"}, {"R", "O", "O"}};
+	    String[][] backS = {{"O", "R", "G"}, {"O", "G", "G"}, {"W", "W", "W"}};
+
+
+		String[][] right = {{"G", "R", "B"}, {"G", "R", "W"}, {"R", "O", "O"}};
+	    String[][] left = {{"G", "O", "O"}, {"Y", "O", "O"}, {"G", "R", "O"}};
+	    String[][] up = {{"R", "R", "R"}, {"B", "Y", "G"}, {"B", "Y", "O"}};
+	    String[][] down = {{"B", "B", "B"}, {"B", "W", "G"}, {"R", "W", "G"}};
+	    String[][] front = {{"W", "R", "Y"}, {"W", "B", "Y"}, {"Y", "Y", "Y"}};
+	    String[][] back = {{"Y", "B", "W"}, {"O", "G", "G"}, {"W", "W", "W"}};
+
+
+	    String[][][] cube = {front, right, left, up, down, back};
+	    String[][][] goal = {frontS, rightS, leftS, upS, downS, backS};
+
+		String[][][] tested = solver.downI(cube);
+
+		if (!Arrays.deepEquals(tested, goal)) {
+			System.out.println("testDownI failed: ");
+			for (int i = 0; i < 6; i++) {
+				solver.print(tested[i]);
+			}
+			System.out.println();
+			for (int i = 0; i < 6; i++) {
+				solver.print(goal[i]);
+			}
+		}
+		else {
+			System.out.println("testDownI Passed");
+		}
+	}
+
+
+
+
+
+
+
+
+
 
 }

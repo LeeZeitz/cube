@@ -22,6 +22,7 @@ public class CubeSolver{
 			}
 			System.out.println();
 		}
+		System.out.println();
 		return grid;
 	}
 
@@ -238,13 +239,13 @@ public class CubeSolver{
 	public static String[][][] back(String[][][] state) {
 		String[][][] newState = copyState(state);
       	
-        newState[1][0][2] = state[4][2][0];
+        newState[1][0][2] = state[4][2][2];
         newState[1][1][2] = state[4][2][1];
-        newState[1][2][2] = state[4][2][2];
+        newState[1][2][2] = state[4][2][0];
 
-        newState[4][2][0] = state[2][0][0];
-        newState[4][2][1] = state[2][1][0];
         newState[4][2][2] = state[2][2][0];
+        newState[4][2][1] = state[2][1][0];
+        newState[4][2][0] = state[2][0][0];
                 
       	newState[2][0][0] = state[3][0][2];
       	newState[2][1][0] = state[3][0][1];
@@ -294,13 +295,13 @@ public class CubeSolver{
     public static String[][][] backI(String[][][] state) {
 		String[][][] newState = copyState(state);
       	
-        newState[1][0][2] = state[3][0][2];
+        newState[1][0][2] = state[3][0][0];
         newState[1][1][2] = state[3][0][1];
-        newState[1][2][2] = state[3][0][0];
+        newState[1][2][2] = state[3][0][2];
 
-        newState[4][2][0] = state[1][0][2];
+        newState[4][2][0] = state[1][2][2];
         newState[4][2][1] = state[1][1][2];
-        newState[4][2][2] = state[1][2][2];
+        newState[4][2][2] = state[1][0][2];
                 
       	newState[2][0][0] = state[4][2][0];
       	newState[2][1][0] = state[4][2][1];
@@ -309,7 +310,7 @@ public class CubeSolver{
       	newState[3][0][2] = state[2][0][0];
       	newState[3][0][1] = state[2][1][0];
       	newState[3][0][0] = state[2][2][0];
-      
+            
 		newState[5] = rotateI(state[5]);
 		return newState;
 	}
@@ -444,13 +445,17 @@ public class CubeSolver{
   
   public static void main(String[] args) {
     
-    String[][] left = {{"W", "O", "O"}, {"B", "O", "O"}, {"O", "B", "W"}};
-    String[][] right = {{"Y", "Y", "Y"}, {"R", "R", "W"}, {"G", "G", "Y"}};
-    String[][] up = {{"R", "Y", "R"}, {"B", "Y", "R"}, {"B", "B", "R"}};
-    String[][] down = {{"G", "G", "O"}, {"W", "W", "O"}, {"G", "G", "O"}};
-    String[][] front = {{"W", "R", "G"}, {"W", "B", "W"}, {"R", "R", "W"}};
-    String[][] back = {{"Y", "Y", "B"}, {"Y", "G", "G"}, {"B", "O", "B"}};
-    
+
+
+
+
+    String[][] right = {{"G", "R", "B"}, {"G", "R", "W"}, {"W", "B", "Y"}};
+    String[][] left = {{"G", "O", "O"}, {"Y", "O", "O"}, {"Y", "Y", "Y"}};
+    String[][] up = {{"R", "R", "R"}, {"B", "Y", "G"}, {"B", "Y", "O"}};
+    String[][] down = {{"B", "G", "G"}, {"B", "W", "W"}, {"B", "B", "R"}};
+    String[][] front = {{"W", "R", "Y"}, {"W", "B", "Y"}, {"R", "O", "O"}};
+    String[][] back = {{"O", "R", "G"}, {"O", "G", "G"}, {"W", "W", "W"}};
+
 
 	String[][] rightS = {{"R", "R", "R"}, {"R", "R", "R"}, {"R", "R", "R"}};
     String[][] leftS = {{"O", "O", "O"}, {"O", "O", "O"}, {"O", "O", "O"}};
